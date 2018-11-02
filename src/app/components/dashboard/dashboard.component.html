@@ -1,0 +1,11 @@
+<button class="btn btn-danger" (click)="logout()">Logout</button>
+<div class="container">
+  <h5 class="text-primary">Your Information</h5>
+  <p>
+    <strong>Token: </strong> {{info.token}}<br>
+    <strong>name: </strong> {{info.username}}<br>
+    <strong>Roles:</strong> {{info.authorities}}<br />
+  </p>
+  <h5>Click for some list</h5>
+  <a routerLink="/list" class="btn btn-secondary">List</a><br>
+</div>
