@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AdminRegisterComponent implements OnInit {
   user: User = new User();
+  error: '';
 
   constructor(private authService: AuthserviceService, private router: Router) { }
  
@@ -19,9 +20,11 @@ export class AdminRegisterComponent implements OnInit {
     this.authService.admin(this.user)
     .subscribe(
       res => {
-        this.router.navigate(['/login'])
+        this.router.navigate(['/list'])
       },
-      err => console.log(err)
+      error => {
+        this.error = error
+      }
     )      
 }
 }

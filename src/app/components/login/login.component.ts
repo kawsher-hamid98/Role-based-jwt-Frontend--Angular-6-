@@ -30,7 +30,15 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveUsername(res.username)
         this.tokenStorage.saveAuthorities(res.authorities);
         this.roles = this.tokenStorage.getAuthorities();
-        this.router.navigate(['/dash'])
+
+        //landing page
+        if(this.roles[0] == 'ADMIN'){
+        this.router.navigate(['/list']);
+
+        } else if(this.roles[0] == 'USER') {
+         // window.location.reload();
+          this.router.navigate(['/dash']);
+        }
       },
       error => {
         this.error = error

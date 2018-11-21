@@ -17,6 +17,7 @@ export class AuthserviceService {
   private signupUrl = 'http://localhost:8080/api/auth/signup';
   private adminUrl = 'http://localhost:8080/api/auth/admin';
   private userUrl = 'http://localhost:8080/rest/admin';
+  private restUrl = 'http://localhost:8080/rest';
   constructor(private http: HttpClient) {
   }
  
@@ -35,6 +36,10 @@ export class AuthserviceService {
 
    getCustomersList(): Observable<any> {
   return this.http.get(`${this.userUrl}`)
+   }
+
+   deleteCustomer(id: string): Observable<any> {
+     return this.http.delete(`${this.restUrl}/${id}`, {responseType: 'text'});
    }
 
 }

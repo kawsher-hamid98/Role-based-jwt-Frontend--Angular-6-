@@ -5,6 +5,7 @@ import { User } from '../user';
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
+const ID_KEY = 'idkey';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,7 @@ export class TokenStorageServiceService {
   public getToken(): string {
     return sessionStorage.getItem(TOKEN_KEY);
   }
+ 
   public saveUsername(username: string) {
     window.sessionStorage.removeItem(USERNAME_KEY);
     window.sessionStorage.setItem(USERNAME_KEY, username);
@@ -47,15 +49,23 @@ public saveAuthorities(authorities: string[]) {
 }
 
 loggedAdmin() {
-  return !!sessionStorage.getItem(AUTHORITIES_KEY);
+ 
+  let authorities = this.getAuthorities()
+   
+  if(authorities[0] === 'ADMIN'){
+    return true;
+  }else {
+    //console.log('Unauthorized to open link: ');
+    return false;
+  }
 }
 
 public getAuthorities(): string[] {
   this.roles = [];
 
   if (sessionStorage.getItem(TOKEN_KEY)) {
-    JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
-      this.roles.push(authority.authority);
+    JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(k => {
+      this.roles.push(k.authority);
     });
   }
 

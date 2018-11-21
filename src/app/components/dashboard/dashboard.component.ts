@@ -17,11 +17,10 @@ export class DashboardComponent implements OnInit {
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
-    
   }
  
   logout() {
     this.token.logoutUser();
-    window.location.reload();
+  
   }
 }

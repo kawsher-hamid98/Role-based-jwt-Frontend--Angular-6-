@@ -15,7 +15,13 @@ import { TokenStorageServiceService } from './services/token-storage-service.ser
 import { AuthGuard } from './auth.guard';
 import { ListComponent } from './components/list/list.component';
 import { AdminRegisterComponent } from './components/admin-register/admin-register.component';
-
+import { GeneralEventComponent } from './componentsEvent/general-event/general-event.component';
+import { GeneralEventServiceService } from './servicesEvent/general/general-event-service.service';
+import { SpecialEventServiceService } from './servicesEvent/Special/special-event-service.service';
+import { CreateEventComponent } from './componentsEvent/create-event/create-event.component';
+import { GeneralEventDetailsComponent } from './componentsEvent/general-event-details/general-event-details.component';
+import { TicketPrintingComponent } from './componentsEvent/ticket-printing/ticket-printing.component';
+import { FilterPipePipe } from './filter-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,12 @@ import { AdminRegisterComponent } from './components/admin-register/admin-regist
     HomeComponent,
     DashboardComponent,
     ListComponent,
-    AdminRegisterComponent
+    AdminRegisterComponent,
+    GeneralEventComponent,
+    CreateEventComponent,
+    GeneralEventDetailsComponent,
+    TicketPrintingComponent,
+    FilterPipePipe
   ],
   imports: [
     BrowserModule,
@@ -33,7 +44,8 @@ import { AdminRegisterComponent } from './components/admin-register/admin-regist
     FormsModule,
     AppRoutingModule
   ],
-  providers: [AuthserviceService,AuthGuard,TokenStorageServiceService,{
+  providers: [AuthserviceService,GeneralEventServiceService,SpecialEventServiceService,
+    AuthGuard,TokenStorageServiceService,{
     provide: HTTP_INTERCEPTORS,
     useClass:TokenInterceptorServiceService,
     multi: true

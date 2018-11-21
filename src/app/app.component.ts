@@ -12,7 +12,7 @@ const TOKEN_KEY = 'AuthToken';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app55';
+  title = 'Event';
   currentUser:string;
 
   

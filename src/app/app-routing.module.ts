@@ -8,6 +8,10 @@ import { Router, Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { ListComponent } from './components/list/list.component';
 import { AdminRegisterComponent } from './components/admin-register/admin-register.component';
+import { GeneralEventComponent } from './componentsEvent/general-event/general-event.component';
+import { CreateEventComponent } from './componentsEvent/create-event/create-event.component';
+import { GeneralEventDetailsComponent } from './componentsEvent/general-event-details/general-event-details.component';
+import { TicketPrintingComponent } from './componentsEvent/ticket-printing/ticket-printing.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,15 +19,19 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'dash', component: DashboardComponent, canActivate:[AuthGuard]},
+  {path: 'generalEvent', component: GeneralEventComponent},
+  {path: 'ticket/:id', component: TicketPrintingComponent, canActivate: [AuthGuard]},
+
   {path: 'list', component: ListComponent, canActivateChild: [AuthGuard],
-  children: [
-    {
-      path: '',
-      component: HomeComponent
-    }
-  ]
-},
-  {path: 'admin', component: AdminRegisterComponent},
+  children: [{path: '',component: HomeComponent}]},
+
+  {path: 'event-details/:id', component: GeneralEventDetailsComponent},
+
+  {path: 'createGeneralEvent', component: CreateEventComponent, canActivateChild: [AuthGuard],
+  children: [{path: '',component: HomeComponent}]},
+
+  {path: 'admin', component: AdminRegisterComponent, canActivateChild: [AuthGuard],
+  children: [{path: '',component: HomeComponent}]},
 ]
 
 @NgModule({
